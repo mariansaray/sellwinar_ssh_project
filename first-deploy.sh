@@ -18,10 +18,15 @@ echo ""
 if [ -d "$PROJECT_DIR" ]; then
     echo "[1/8] Projekt už existuje, aktualizujem..."
     cd "$PROJECT_DIR"
+    if git remote get-url origin 2>/dev/null | grep -q '^https://'; then
+        echo "    Nastavujem Git remote na SSH (produkcia)..."
+        git remote set-url origin git@github.com:mariansaray/sellwinar_ssh_project.git
+    fi
     git pull origin main
 else
-    echo "[1/8] Klonem projekt z GitHubu..."
-    git clone https://github.com/mariansaray/sellwinar_ssh_project.git "$PROJECT_DIR"
+    echo "[1/8] Klonem projekt z GitHubu (SSH)..."
+    # Vyžaduje deploy key alebo SSH kľúč servera pridaný v GitHub → Repository settings → Deploy keys
+    git clone git@github.com:mariansaray/sellwinar_ssh_project.git "$PROJECT_DIR"
     cd "$PROJECT_DIR"
 fi
 
