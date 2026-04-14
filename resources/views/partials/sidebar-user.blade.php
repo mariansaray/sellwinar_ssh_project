@@ -11,11 +11,6 @@
         <i data-lucide="video" class="w-[18px] h-[18px]"></i>
         Webináre
     </a>
-    <a href="{{ route('dashboard.smart-videos.index') }}"
-       class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium transition-fast {{ $currentRoute === 'dashboard.smart-videos.index' ? 'bg-violet-50 dark:bg-violet-900/20 text-violet-600 font-semibold' : 'text-ink-500 dark:text-ink-400 hover:bg-ink-100 dark:hover:bg-ink-700' }}">
-        <i data-lucide="play-circle" class="w-[18px] h-[18px]"></i>
-        Smart videá
-    </a>
     <a href="{{ route('dashboard.registrants.index') }}"
        class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium transition-fast {{ str_starts_with($currentRoute ?? '', 'dashboard.registrants') ? 'bg-violet-50 dark:bg-violet-900/20 text-violet-600 font-semibold' : 'text-ink-500 dark:text-ink-400 hover:bg-ink-100 dark:hover:bg-ink-700' }}">
         <i data-lucide="users" class="w-[18px] h-[18px]"></i>

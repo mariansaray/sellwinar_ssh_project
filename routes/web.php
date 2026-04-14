@@ -113,11 +113,23 @@ Route::middleware(['auth', 'tenant', 'subscription'])->prefix('dashboard')->name
     // Global analytics
     Route::get('analytics', [GlobalAnalyticsController::class, 'index'])->name('analytics.index');
 
-    // Email templates overview
+    // Global email templates (library)
     Route::get('email-templates', [EmailSettingsController::class, 'index'])->name('email-templates.index');
+    Route::get('email-templates/create', [EmailSettingsController::class, 'create'])->name('email-templates.create');
+    Route::post('email-templates', [EmailSettingsController::class, 'store'])->name('email-templates.store');
+    Route::get('email-templates/{emailTemplate}/edit', [EmailSettingsController::class, 'edit'])->name('email-templates.edit');
+    Route::put('email-templates/{emailTemplate}', [EmailSettingsController::class, 'update'])->name('email-templates.update');
+    Route::delete('email-templates/{emailTemplate}', [EmailSettingsController::class, 'destroy'])->name('email-templates.destroy');
+    Route::post('email-templates/{emailTemplate}/apply', [EmailSettingsController::class, 'applyToWebinar'])->name('email-templates.apply');
 
-    // SMS templates overview
+    // Global SMS templates (library)
     Route::get('sms-templates', [SmsSettingsController::class, 'index'])->name('sms-templates.index');
+    Route::get('sms-templates/create', [SmsSettingsController::class, 'create'])->name('sms-templates.create');
+    Route::post('sms-templates', [SmsSettingsController::class, 'store'])->name('sms-templates.store');
+    Route::get('sms-templates/{smsTemplate}/edit', [SmsSettingsController::class, 'edit'])->name('sms-templates.edit');
+    Route::put('sms-templates/{smsTemplate}', [SmsSettingsController::class, 'update'])->name('sms-templates.update');
+    Route::delete('sms-templates/{smsTemplate}', [SmsSettingsController::class, 'destroy'])->name('sms-templates.destroy');
+    Route::post('sms-templates/{smsTemplate}/apply', [SmsSettingsController::class, 'applyToWebinar'])->name('sms-templates.apply');
 
     // Settings
     Route::get('settings', [SettingsController::class, 'index'])->name('settings.index');
