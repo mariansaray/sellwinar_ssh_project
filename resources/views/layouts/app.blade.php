@@ -113,7 +113,18 @@
 
     @stack('styles')
 
-    <!-- Alpine.js -->
+    <!-- Video player -->
+    <script src="/js/video-player.js"></script>
+
+    <!-- Alpine.js (must load AFTER video-player.js) -->
+    <script>
+        // Register videoPlayer as Alpine.data component before Alpine starts
+        document.addEventListener('alpine:init', () => {
+            if (typeof window.videoPlayer === 'function') {
+                Alpine.data('videoPlayer', window.videoPlayer);
+            }
+        });
+    </script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 <body class="font-body bg-[#FAFAFA] text-ink-800 dark:bg-ink-900 dark:text-[#F0EFF5] antialiased">

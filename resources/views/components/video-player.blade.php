@@ -30,9 +30,13 @@
     ]));
 @endphp
 
+<style>
+    .sellwinar-player iframe { width: 100% !important; height: 100% !important; position: absolute; top: 0; left: 0; }
+    .sellwinar-player video { width: 100% !important; height: 100% !important; object-fit: contain; }
+</style>
 <div x-data="videoPlayer({{ $jsConfig }})"
      x-ref="playerWrapper"
-     class="relative w-full bg-black rounded-xl overflow-hidden select-none"
+     class="sellwinar-player relative w-full bg-black rounded-xl overflow-hidden select-none"
      style="aspect-ratio: 16/9;">
 
     {{-- Video container --}}
@@ -152,8 +156,4 @@
     </div>
 </div>
 
-@once
-@push('scripts')
-<script src="/js/video-player.js"></script>
-@endpush
-@endonce
+{{-- video-player.js is loaded in layouts/app.blade.php head --}}

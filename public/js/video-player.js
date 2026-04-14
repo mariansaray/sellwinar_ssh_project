@@ -2,8 +2,7 @@
  * Sellwinar Video Player — Alpine.js component
  * Supports YouTube, Vimeo, and custom (HTML5) video sources
  */
-document.addEventListener('alpine:init', () => {
-    Alpine.data('videoPlayer', (config = {}) => ({
+window.videoPlayer = (config = {}) => ({
         // State
         playing: false,
         muted: config.startMuted !== false,
@@ -37,7 +36,7 @@ document.addEventListener('alpine:init', () => {
         player: null, // YouTube/Vimeo player instance
         videoEl: null, // HTML5 video element
         trackingInterval: null,
-        sessionId: config.sessionId || this._generateSessionId(),
+        sessionId: config.sessionId || ('sess_' + Date.now().toString(36) + Math.random().toString(36).substr(2, 9)),
         webinarId: config.webinarId || null,
         registrantId: config.registrantId || null,
 
@@ -59,10 +58,12 @@ document.addEventListener('alpine:init', () => {
             if (!videoId) { this.loading = false; return; }
 
             const containerId = 'yt-player-' + Date.now();
-            this.$refs.videoContainer.innerHTML = `<div id="${containerId}"></div>`;
+            this.$refs.videoContainer.innerHTML = `<div id="${containerId}" style="width:100%;height:100%"></div>`;
 
             const loadPlayer = () => {
                 this.player = new YT.Player(containerId, {
+                    width: '100%',
+                    height: '100%',
                     videoId: videoId,
                     playerVars: {
                         autoplay: this.autoplay ? 1 : 0,
@@ -108,11 +109,12 @@ document.addEventListener('alpine:init', () => {
         // ---- Vimeo ----
         _initVimeo() {
             const containerId = 'vimeo-player-' + Date.now();
-            this.$refs.videoContainer.innerHTML = `<div id="${containerId}"></div>`;
+            this.$refs.videoContainer.innerHTML = `<div id="${containerId}" style="width:100%;height:100%"></div>`;
 
             const loadPlayer = () => {
                 this.player = new Vimeo.Player(containerId, {
                     url: this.videoUrl,
+                    width: this.$refs.videoContainer.offsetWidth,
                     autoplay: this.autoplay,
                     muted: this.muted,
                     controls: false,
@@ -378,5 +380,4 @@ document.addEventListener('alpine:init', () => {
             if (this.trackingInterval) clearInterval(this.trackingInterval);
             if (this.source === 'vimeo' && this.player) this.player.destroy();
         }
-    }));
 });
