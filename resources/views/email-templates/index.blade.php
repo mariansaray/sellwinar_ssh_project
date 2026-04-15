@@ -74,7 +74,7 @@
                             <button @click="open = !open" class="px-3 py-1.5 text-xs text-ink-600 dark:text-ink-400 border border-ink-200 dark:border-ink-600 rounded-lg hover:bg-ink-50 dark:hover:bg-ink-600 transition-fast">
                                 Použiť vo webinári
                             </button>
-                            <div x-show="open" @click.away="open = false" x-transition class="absolute left-0 mt-1 w-56 bg-white dark:bg-ink-700 border border-ink-200 dark:border-ink-600 rounded-xl shadow-lg py-1 z-50">
+                            <div x-show="open" @click.outside="open = false" x-transition class="absolute left-0 mt-1 w-56 bg-white dark:bg-ink-700 border border-ink-200 dark:border-ink-600 rounded-xl shadow-lg py-1 z-50">
                                 @foreach($webinars as $w)
                                 <form method="POST" action="{{ route('dashboard.email-templates.apply', $tpl) }}">
                                     @csrf

@@ -59,7 +59,7 @@
                         <i data-lucide="chevron-down" class="w-4 h-4 text-ink-400"></i>
                     </button>
 
-                    <div x-show="open" @click.away="open = false" x-transition class="absolute right-0 mt-2 w-48 bg-white dark:bg-ink-700 border border-ink-200 dark:border-ink-600 rounded-xl shadow-lg py-1 z-50">
+                    <div x-show="open" @click.outside="open = false" x-transition class="absolute right-0 mt-2 w-48 bg-white dark:bg-ink-700 border border-ink-200 dark:border-ink-600 rounded-xl shadow-lg py-1 z-50">
                         <a href="{{ route('dashboard.settings.index') }}" class="block px-4 py-2 text-sm text-ink-600 dark:text-ink-300 hover:bg-ink-50 dark:hover:bg-ink-600">Nastavenia</a>
                         @if(Auth::user()->isSuperAdmin())
                             <a href="{{ route('super-admin.dashboard') }}" class="block px-4 py-2 text-sm text-violet-600 hover:bg-ink-50 dark:hover:bg-ink-600">Super Admin</a>

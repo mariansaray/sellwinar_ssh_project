@@ -128,7 +128,7 @@
                         <button @click="showSpeedMenu = !showSpeedMenu"
                                 class="text-white/80 hover:text-white text-xs font-mono transition-fast"
                                 x-text="speedRate + 'x'"></button>
-                        <div x-show="showSpeedMenu" @click.away="showSpeedMenu = false"
+                        <div x-show="showSpeedMenu" @click.outside="showSpeedMenu = false"
                              class="absolute bottom-8 right-0 bg-ink-800 border border-ink-600 rounded-lg py-1 shadow-lg min-w-[80px]">
                             <template x-for="rate in [0.5, 0.75, 1, 1.25, 1.5, 2]" :key="rate">
                                 <button @click="setSpeed(rate)"
